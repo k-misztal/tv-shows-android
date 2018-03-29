@@ -1,4 +1,4 @@
-package misztal.com.tvshows
+package com.misztal.tvshows
 
 import org.junit.Test
 

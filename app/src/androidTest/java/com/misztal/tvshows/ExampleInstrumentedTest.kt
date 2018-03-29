@@ -1,4 +1,4 @@
-package misztal.com.tvshows
+package com.misztal.tvshows
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
