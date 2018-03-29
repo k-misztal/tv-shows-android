@@ -3,6 +3,7 @@ package com.misztal.tvshows.di.component
 import com.misztal.tvshows.App
 import com.misztal.tvshows.di.module.AppModule
 import com.misztal.tvshows.di.module.BuildersModule
+import com.misztal.tvshows.di.module.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -15,7 +16,8 @@ import javax.inject.Singleton
  * @author Krzysztof Misztal
  */
 @Singleton
-@Component(modules = [BuildersModule::class, AndroidSupportInjectionModule::class, AppModule::class])
+@Component(modules = [BuildersModule::class, AndroidSupportInjectionModule::class, AppModule::class,
+    NetworkModule::class])
 interface AppComponent {
 
     @Component.Builder
