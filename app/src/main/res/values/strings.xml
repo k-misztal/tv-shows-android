@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">TV Shows</string>
 
+    <!--TvShow list-->
+    <string name="no_shows">Sorry, there are no shows available. Pull down to refresh.</string>
+
     <string name="error_unknown">Something went wrong</string>
 </resources>

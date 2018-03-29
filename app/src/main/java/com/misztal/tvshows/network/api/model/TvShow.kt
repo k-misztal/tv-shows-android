@@ -7,7 +7,7 @@ package com.misztal.tvshows.network.api.model
  */
 data class TvShow(
         val id: Int,
-        val posterPath: String,
+        val posterPath: String?,
         val popularity: Float,
         val voteAverage: Float,
         val name: String,

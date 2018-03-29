@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView
  */
 abstract class ArrayMvvmRecyclerAdapter<T : Any, VH : RecyclerView.ViewHolder> : RecyclerView.Adapter<VH>() {
 
-    private var data: MutableList<T> = ArrayList()
+    var data: MutableList<T> = ArrayList()
 
     var onItemClickedListener: ((T, Int) -> Unit)? = null
 
