@@ -1,6 +1,6 @@
 package com.misztal.tvshows.network.api
 
-import com.misztal.tvshows.network.api.model.response.PopularTvShows
+import com.misztal.tvshows.network.api.model.response.TvShows
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,6 +13,6 @@ import retrofit2.http.Query
 interface MovieApi {
 
     @GET("/tv/popular")
-    fun getPopularTvShows(@Query("page") page: Int): Single<PopularTvShows>
+    fun getPopularTvShows(@Query("page") page: Int): Single<TvShows>
 
 }

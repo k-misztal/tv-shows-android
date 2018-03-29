@@ -8,6 +8,7 @@ import android.widget.Toast
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -56,6 +57,7 @@ abstract class BaseActivity<S : ViewState, out VM : BaseViewModel<S>> : AppCompa
     //==========================================================================
 
     private fun renderInternal(state: S?) {
+        Timber.d("Rendering state: $state")
         val errorMessage = state?.errorMessage
         if (errorMessage != null) {
             renderError(getString(errorMessage))

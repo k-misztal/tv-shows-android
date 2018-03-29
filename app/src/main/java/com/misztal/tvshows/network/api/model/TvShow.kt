@@ -5,7 +5,7 @@ package com.misztal.tvshows.network.api.model
  *
  * @author Krzysztof Misztal
  */
-data class PopularTvShow(
+data class TvShow(
         val id: Int,
         val posterPath: String,
         val popularity: Float,

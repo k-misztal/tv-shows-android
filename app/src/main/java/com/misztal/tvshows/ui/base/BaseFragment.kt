@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.widget.Toast
+import timber.log.Timber
 
 /**
  * Created by kmisztal on 29/03/2018.
@@ -49,6 +50,7 @@ abstract class BaseFragment<S : ViewState, out VM : BaseViewModel<S>> : Fragment
     //==========================================================================
 
     private fun renderInternal(state: S?) {
+        Timber.d("Rendering state: $state")
         val errorMessage = state?.errorMessage
         if (errorMessage != null) {
             renderError(getString(errorMessage))
