@@ -29,14 +29,18 @@ class TvShowsRecyclerAdapter : ArrayMvvmRecyclerAdapter<TvShow, TvShowsRecyclerA
         val item = data[position]
 
         holder.title.text = item.name
+        holder.rating.text = item.voteAverage.toString()
 
         if (item.posterPath != null) {
-            Picasso.with(holder.itemView.context).load("${MovieApi.IMAGE_PATH}${item.posterPath}")
+            Picasso.with(holder.itemView.context)
+                    .load("${MovieApi.IMAGE_PATH}${item.posterPath}")
+                    .into(holder.posterImage)
         }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val posterImage: ImageView = view.poster
         val title: TextView = view.showTitle
+        val rating: TextView = view.ratingText
     }
 }

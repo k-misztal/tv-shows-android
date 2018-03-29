@@ -44,7 +44,7 @@ class TvShowsViewModel(
         isDownloading = true
         val toFetch = lastFetchedPage + 1
 
-        val isLoading = toFetch > 1
+        val isLoading = toFetch <= 1
         val isLoadingNextPage = !isLoading
 
         val state = TvShowsState(getShows(), isLoading, isLoadingNextPage)
@@ -55,6 +55,8 @@ class TvShowsViewModel(
                 .subscribeBy(
                         onSuccess = this::onPageFetched,
                         onError = {
+                            Timber.e(it, "Error fetching tv series.")
+
                             isDownloading = false
                             val msg = exceptionHandler.getErrorMessage(it)
 

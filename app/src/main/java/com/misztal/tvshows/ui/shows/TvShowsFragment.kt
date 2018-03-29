@@ -3,7 +3,9 @@ package com.misztal.tvshows.ui.shows
 import android.content.Context
 import android.os.Bundle
 import android.support.transition.TransitionManager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +45,7 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
         adapter = TvShowsRecyclerAdapter()
 
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
     }
 
     //==========================================================================
@@ -58,7 +60,7 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
             progressBar.visibility = View.GONE
         }
 
-        if (state.shows.isEmpty()) {
+        if (state.shows.isEmpty() && !state.isLoading) {
             noShowsText.visibility = View.VISIBLE
         } else {
             noShowsText.visibility = View.GONE

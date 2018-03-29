@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="tv_show_icon_size">42dp</dimen>
+    <dimen name="tv_show_icon_height">240dp</dimen>
+
 </resources>
