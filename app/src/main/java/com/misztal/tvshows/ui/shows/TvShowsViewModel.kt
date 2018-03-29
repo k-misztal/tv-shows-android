@@ -67,6 +67,17 @@ class TvShowsViewModel(
         addDisposable(disposable)
     }
 
+    fun reset() {
+        disposables.clear()
+        isDownloading = false
+        lastFetchedPage = 0
+        totalPages = Int.MAX_VALUE
+
+        //we reset it synchronously
+        stateData.value = TvShowsState(emptyList(), true, false, null)
+        fetchNextPage()
+    }
+
     private fun onPageFetched(tvShows: TvShows) {
         isDownloading = false
         lastFetchedPage = tvShows.page

@@ -51,6 +51,10 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
         recyclerView.addOnScrollListener(scrollListener)
+
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.reset()
+        }
     }
 
     //==========================================================================
@@ -59,11 +63,7 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
 
     override fun render(state: TvShowsState) {
         TransitionManager.beginDelayedTransition(view as ViewGroup)
-        if (state.isLoading) {
-            progressBar.visibility = View.VISIBLE
-        } else {
-            progressBar.visibility = View.GONE
-        }
+        swipeRefreshLayout.isRefreshing = state.isLoading
 
         if (state.shows.isEmpty() && !state.isLoading) {
             noShowsText.visibility = View.VISIBLE
@@ -78,7 +78,7 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
     override fun renderEmptyState() {
         TransitionManager.beginDelayedTransition(view as ViewGroup)
         noShowsText.visibility = View.VISIBLE
-        progressBar.visibility = View.GONE
+        swipeRefreshLayout.isRefreshing = false
         adapter.setItems(emptyList())
     }
 
