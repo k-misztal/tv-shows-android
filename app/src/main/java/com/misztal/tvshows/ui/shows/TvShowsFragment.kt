@@ -73,6 +73,9 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
 
         adapter.setItems(state.shows)
         adapter.isLoading = state.isLoadingNextPage
+        if (adapter.isLoading) {
+            recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+        }
     }
 
     override fun renderEmptyState() {
