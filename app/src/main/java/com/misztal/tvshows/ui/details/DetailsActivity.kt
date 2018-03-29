@@ -5,8 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.misztal.tvshows.R
+import com.misztal.tvshows.network.api.MovieApi
 import com.misztal.tvshows.network.api.model.TvShow
 import com.misztal.tvshows.ui.base.BaseActivity
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_details.*
 import javax.inject.Inject
 
 /**
@@ -22,7 +25,7 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
     private val show by lazy { intent.getSerializableExtra(KEY_SHOW) as TvShow }
 
     companion object {
-        private val KEY_SHOW = "show"
+        private const val KEY_SHOW = "show"
 
         fun newIntent(context: Context, show: TvShow): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
@@ -36,8 +39,11 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = show.name
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        title = ""
+
+        loadShowInfo()
     }
 
     override fun render(state: DetailsViewState) {
@@ -50,6 +56,25 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
         onBackPressed()
         return super.onSupportNavigateUp()
     }
+
+    //==========================================================================
+    // private
+    //==========================================================================
+
+    private fun loadShowInfo() {
+        titleText.text = show.name
+        description.text = show.overview
+
+        Picasso.with(this)
+                .load("${MovieApi.imagePath(500)}${show.backdropPath}")
+                .into(image)
+
+        Picasso.with(this)
+                .load("${MovieApi.imagePath(200)}${show.posterPath}")
+                .into(poster)
+    }
+
+    //==========================================================================
 
     override fun createViewModel(): DetailsViewModel {
         vmFactory.show = show

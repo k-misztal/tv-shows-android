@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="tv_show_icon_height">240dp</dimen>
+    <dimen name="tv_show_detail_poster_size">80dp</dimen>
+    <dimen name="collapsing_toolbar_expanded_height">350dp</dimen>
 
 </resources>

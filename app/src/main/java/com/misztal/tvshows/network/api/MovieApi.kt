@@ -13,7 +13,7 @@ import retrofit2.http.Query
 interface MovieApi {
 
     companion object {
-        const val IMAGE_PATH = "http://image.tmdb.org/t/p/w185"
+        fun imagePath(width: Int) = "http://image.tmdb.org/t/p/w$width"
     }
 
     @GET("tv/popular")

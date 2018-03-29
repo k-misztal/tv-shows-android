@@ -57,7 +57,7 @@ class TvShowsRecyclerAdapter : ArrayMvvmRecyclerAdapter<TvShow, RecyclerView.Vie
 
             if (item.posterPath != null) {
                 Picasso.with(holder.itemView.context)
-                        .load("${MovieApi.IMAGE_PATH}${item.posterPath}")
+                        .load("${MovieApi.imagePath(200)}${item.posterPath}")
                         .into(holder.posterImage)
             }
         }
