@@ -1,5 +1,6 @@
 package com.misztal.tvshows.ui.shows
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.transition.TransitionManager
@@ -83,7 +84,8 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
 
     //==========================================================================
 
-    override fun createViewModel(): TvShowsViewModel = vmFactory.create(TvShowsViewModel::class.java)
+    override fun createViewModel(): TvShowsViewModel =
+            ViewModelProviders.of(this, vmFactory).get(TvShowsViewModel::class.java)
 
     //==========================================================================
 
