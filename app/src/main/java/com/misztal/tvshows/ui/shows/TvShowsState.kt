@@ -13,5 +13,5 @@ data class TvShowsState(
         val isLoading: Boolean,
         val isLoadingNextPage: Boolean,
 
-        override val errorMessage: Int?
+        override val errorMessage: Int? = null
 ) : ViewState

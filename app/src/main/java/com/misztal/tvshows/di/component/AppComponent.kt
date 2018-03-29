@@ -4,6 +4,7 @@ import com.misztal.tvshows.App
 import com.misztal.tvshows.di.module.AppModule
 import com.misztal.tvshows.di.module.BuildersModule
 import com.misztal.tvshows.di.module.NetworkModule
+import com.misztal.tvshows.di.module.SchedulerModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -17,7 +18,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = [BuildersModule::class, AndroidSupportInjectionModule::class, AppModule::class,
-    NetworkModule::class])
+    NetworkModule::class, SchedulerModule::class])
 interface AppComponent {
 
     @Component.Builder

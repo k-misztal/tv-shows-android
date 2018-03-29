@@ -1,5 +1,6 @@
 package com.misztal.tvshows.di.module
 
+import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.misztal.tvshows.BuildConfig
@@ -24,6 +25,7 @@ class NetworkModule {
     fun provideGson(): Gson {
         val builder = GsonBuilder()
         builder.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(DateTime::class.java, DateTimeSerializer())
 
         return builder.create()

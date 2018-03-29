@@ -12,7 +12,7 @@ import retrofit2.http.Query
  */
 interface MovieApi {
 
-    @GET("/tv/popular")
+    @GET("tv/popular")
     fun getPopularTvShows(@Query("page") page: Int): Single<TvShows>
 
 }

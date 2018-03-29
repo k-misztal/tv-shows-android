@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.misztal.tvshows.R
 import com.misztal.tvshows.ui.base.BaseFragment
 import dagger.android.support.AndroidSupportInjection
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -38,11 +39,11 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
     //==========================================================================
 
     override fun render(state: TvShowsState) {
-
+        Timber.e(state.toString())
     }
 
     override fun renderEmptyState() {
-
+        Timber.e("Rendering empty state")
     }
 
     //==========================================================================
