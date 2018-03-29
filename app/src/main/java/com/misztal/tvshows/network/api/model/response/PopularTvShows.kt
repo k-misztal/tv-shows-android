@@ -7,7 +7,7 @@ import com.misztal.tvshows.network.api.model.PopularTvShow
  *
  * @author Krzysztof Misztal
  */
-data class PopularTvShowsResponse(
+data class PopularTvShows(
         val page: Int,
         val totalResults: Int,
         val totalPages: Int,
