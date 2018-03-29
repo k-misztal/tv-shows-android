@@ -1,5 +1,7 @@
 package com.misztal.tvshows.network.api.model
 
+import java.io.Serializable
+
 /**
  * Created by kmisztal on 29/03/2018.
  *
@@ -14,4 +16,4 @@ data class TvShow(
         val name: String,
         val originalName: String,
         val overview: String
-)
+) : Serializable

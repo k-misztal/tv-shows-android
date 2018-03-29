@@ -12,8 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.misztal.tvshows.R
 import com.misztal.tvshows.ui.base.BaseFragment
+import com.misztal.tvshows.ui.details.DetailsActivity
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -54,6 +56,16 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
 
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.reset()
+        }
+
+        adapter.onItemClickedListener = { show, _ ->
+            val context = context
+            if (context == null) {
+                Timber.e("Error! Context is null!")
+            } else {
+                val intent = DetailsActivity.newIntent(context, show)
+                startActivity(intent)
+            }
         }
     }
 

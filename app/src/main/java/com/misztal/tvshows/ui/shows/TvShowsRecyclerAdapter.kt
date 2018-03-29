@@ -78,10 +78,16 @@ class TvShowsRecyclerAdapter : ArrayMvvmRecyclerAdapter<TvShow, RecyclerView.Vie
         return super.getItemCount() + 1
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val posterImage: ImageView = view.poster
         val title: TextView = view.showTitle
         val rating: TextView = view.ratingText
+
+        init {
+            view.setOnClickListener {
+                onPositionClicked(adapterPosition)
+            }
+        }
     }
 
     class LoadingViewHolder(view: View) : RecyclerView.ViewHolder(view)
