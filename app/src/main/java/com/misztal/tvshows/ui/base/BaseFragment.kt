@@ -13,7 +13,7 @@ import timber.log.Timber
  */
 abstract class BaseFragment<S : ViewState, out VM : BaseViewModel<S>> : Fragment() {
 
-    private val viewModel: VM by lazy { createViewModel() }
+    protected val viewModel: VM by lazy { createViewModel() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

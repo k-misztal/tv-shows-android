@@ -30,7 +30,7 @@ class TvShowsViewModel(
         fetchNextPage()
     }
 
-    private fun fetchNextPage() {
+    fun fetchNextPage() {
         if (isDownloading) {
             Timber.w("Already fetching page. Task cancelled.")
             return

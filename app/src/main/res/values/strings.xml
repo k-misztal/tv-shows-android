@@ -3,6 +3,7 @@
 
     <!--TvShow list-->
     <string name="no_shows">Sorry, there are no shows available. Pull down to refresh.</string>
+    <string name="loading_more">Fetching more shows</string>
 
     <string name="error_unknown">Something went wrong</string>
 </resources>

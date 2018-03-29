@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.transition.TransitionManager
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +14,7 @@ import com.misztal.tvshows.ui.base.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
 import javax.inject.Inject
+
 
 /**
  * Fragment that displays the most popular tv shows
@@ -26,6 +27,7 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
     lateinit var vmFactory: TvShowsViewModelFactory
 
     lateinit var adapter: TvShowsRecyclerAdapter
+    lateinit var layoutManager: RecyclerView.LayoutManager
 
     companion object {
         fun newInstance(): TvShowsFragment = TvShowsFragment()
@@ -43,9 +45,11 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = TvShowsRecyclerAdapter()
+        layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
 
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.addOnScrollListener(scrollListener)
     }
 
     //==========================================================================
@@ -67,6 +71,7 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
         }
 
         adapter.setItems(state.shows)
+        adapter.isLoading = state.isLoadingNextPage
     }
 
     override fun renderEmptyState() {
@@ -79,4 +84,14 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
     //==========================================================================
 
     override fun createViewModel(): TvShowsViewModel = vmFactory.create(TvShowsViewModel::class.java)
+
+    //==========================================================================
+
+    private val scrollListener: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            if (!recyclerView.canScrollVertically(1)) {
+                viewModel.fetchNextPage()
+            }
+        }
+    }
 }
