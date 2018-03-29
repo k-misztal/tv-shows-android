@@ -15,10 +15,7 @@ import javax.inject.Inject
  *
  * @author Krzysztof Misztal
  */
-abstract class BaseActivity<S : ViewState, out VM : BaseViewModel<S>> : AppCompatActivity(), HasSupportFragmentInjector {
-
-    @Inject
-    lateinit var supportFragmentInjector: AndroidInjector<Fragment>
+abstract class BaseActivity<S : ViewState, out VM : BaseViewModel<S>> : AppCompatActivity() {
 
     private val viewModel: VM by lazy { createViewModel() }
 
@@ -53,10 +50,6 @@ abstract class BaseActivity<S : ViewState, out VM : BaseViewModel<S>> : AppCompa
      * Function that creates view model. **Should use [android.arch.lifecycle.ViewModelProviders]!**
      */
     abstract fun createViewModel(): VM
-
-    //==========================================================================
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = supportFragmentInjector
 
     //==========================================================================
     // Private

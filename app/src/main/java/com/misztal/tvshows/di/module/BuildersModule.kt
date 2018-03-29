@@ -1,6 +1,8 @@
 package com.misztal.tvshows.di.module
 
+import com.misztal.tvshows.ui.home.HomeActivity
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
 /**
  * Binds all sub-components withing the app
@@ -8,5 +10,8 @@ import dagger.Module
  * @author Krzysztof Misztal
  */
 @Module
-class BuildersModule {
+abstract class BuildersModule {
+
+    @ContributesAndroidInjector
+    abstract fun bindHomeActivity(): HomeActivity
 }

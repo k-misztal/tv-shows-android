@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
-    
+
     defaultConfig {
         applicationId "com.misztal.tvshows"
         minSdkVersion 21
@@ -17,14 +17,14 @@ android {
         buildConfigField 'String', 'MOVIE_API', '"https://api.themoviedb.org/3/"'
         buildConfigField 'String', 'MOVIE_API_KEY', '"my-api-key-to-be-placed-here"'
     }
-    
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    
+
 }
 
 dependencies {
