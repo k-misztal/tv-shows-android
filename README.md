@@ -2,7 +2,7 @@
 
 Tv Shows is simple sample app that fetches most popular tv shows using [TMDB](https://www.themoviedb.org) public API. In the show details there is list of similar shows. 
 
-This is an example how to build an app with MVVM architecture. Written in Kotlin. 
+This is an example how to build an app with MVVM architecture. Android MVVM + Kotlin + Architecture Components + Dagger2 + RxJava2.
 
 Note that release build, signing and proguard rules are not configured. 
 
