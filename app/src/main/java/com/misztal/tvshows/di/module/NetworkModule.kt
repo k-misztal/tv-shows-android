@@ -4,13 +4,11 @@ import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.misztal.tvshows.BuildConfig
-import com.misztal.tvshows.common.DateTimeSerializer
 import com.misztal.tvshows.network.HttpClientFactory
 import com.misztal.tvshows.network.api.MovieApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import org.joda.time.DateTime
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,7 +24,6 @@ class NetworkModule {
         val builder = GsonBuilder()
         builder.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(DateTime::class.java, DateTimeSerializer())
 
         return builder.create()
     }
