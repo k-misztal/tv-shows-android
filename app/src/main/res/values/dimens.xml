@@ -4,4 +4,7 @@
     <dimen name="tv_show_detail_poster_size">80dp</dimen>
     <dimen name="collapsing_toolbar_expanded_height">350dp</dimen>
 
+    <dimen name="similar_shows_height">150dp</dimen>
+    <dimen name="similar_shows_width">200dp</dimen>
+
 </resources>

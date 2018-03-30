@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.misztal.tvshows.R
 import com.misztal.tvshows.network.api.MovieApi
 import com.misztal.tvshows.network.api.model.TvShow
@@ -23,6 +25,8 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
     lateinit var vmFactory: DetailViewStateFactory
 
     private val show by lazy { intent.getSerializableExtra(KEY_SHOW) as TvShow }
+
+    private val adapter = DetailsRecyclerAdapter()
 
     companion object {
         private const val KEY_SHOW = "show"
@@ -47,9 +51,25 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
     }
 
     override fun render(state: DetailsViewState) {
+        if (state.isLoading) {
+            progressBar.visibility = View.VISIBLE
+        } else {
+            progressBar.visibility = View.GONE
+        }
+
+        if (state.didDownloadFailed) {
+            retryDownload.visibility = View.VISIBLE
+        } else {
+            retryDownload.visibility = View.GONE
+        }
+
+        adapter.setItems(state.similarShows)
     }
 
     override fun renderEmptyState() {
+        progressBar.visibility = View.GONE
+        retryDownload.visibility = View.VISIBLE
+        adapter.setItems(emptyList())
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -71,6 +91,16 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
         with(Picasso.with(this)) {
             load("${MovieApi.imagePath(500)}${show.backdropPath}").into(image)
             load("${MovieApi.imagePath(200)}${show.posterPath}").into(poster)
+        }
+
+        retryDownload.setOnClickListener { viewModel.fetchSimilarShows() }
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        adapter.onItemClickedListener = { item, _ ->
+            val intent = newIntent(this, item)
+            startActivity(intent)
         }
     }
 

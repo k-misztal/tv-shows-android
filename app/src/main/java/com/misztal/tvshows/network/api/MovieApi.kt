@@ -3,6 +3,7 @@ package com.misztal.tvshows.network.api
 import com.misztal.tvshows.network.api.model.response.TvShows
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -18,5 +19,8 @@ interface MovieApi {
 
     @GET("tv/popular")
     fun getPopularTvShows(@Query("page") page: Int): Single<TvShows>
+
+    @GET("tv/{id}/similar")
+    fun getSimilarShows(@Path("id") id: Int, @Query("page") page: Int): Single<TvShows>
 
 }

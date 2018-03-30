@@ -17,4 +17,5 @@ class DataManager @Inject constructor(
 
     fun getPopularTvShows(page: Int) = movieApi.getPopularTvShows(page)
 
+    fun getSimilarShows(id: Int, page: Int) = movieApi.getSimilarShows(id, page)
 }

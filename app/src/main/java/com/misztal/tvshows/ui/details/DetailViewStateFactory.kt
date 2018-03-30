@@ -2,6 +2,7 @@ package com.misztal.tvshows.ui.details
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.misztal.tvshows.ExceptionHandler
 import com.misztal.tvshows.data.DataManager
 import com.misztal.tvshows.di.qualifier.IOScheduler
 import com.misztal.tvshows.network.api.model.TvShow
@@ -15,7 +16,8 @@ import javax.inject.Inject
  */
 class DetailViewStateFactory @Inject constructor(
         private val dataManager: DataManager,
-        @IOScheduler private val ioScheduler: Scheduler
+        @IOScheduler private val ioScheduler: Scheduler,
+        private val exceptionHandler: ExceptionHandler
 ) : ViewModelProvider.Factory {
 
     lateinit var show: TvShow
@@ -23,7 +25,7 @@ class DetailViewStateFactory @Inject constructor(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailsViewModel::class.java)) {
-            return DetailsViewModel(show, dataManager, ioScheduler) as T
+            return DetailsViewModel(show, dataManager, ioScheduler, exceptionHandler) as T
         }
 
         throw IllegalArgumentException()

@@ -18,7 +18,7 @@ import javax.inject.Inject
  */
 abstract class BaseActivity<S : ViewState, out VM : BaseViewModel<S>> : AppCompatActivity() {
 
-    private val viewModel: VM by lazy { createViewModel() }
+    val viewModel: VM by lazy { createViewModel() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)

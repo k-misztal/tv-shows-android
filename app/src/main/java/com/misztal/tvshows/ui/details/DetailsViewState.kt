@@ -1,5 +1,6 @@
 package com.misztal.tvshows.ui.details
 
+import com.misztal.tvshows.network.api.model.TvShow
 import com.misztal.tvshows.ui.base.ViewState
 
 /**
@@ -7,8 +8,9 @@ import com.misztal.tvshows.ui.base.ViewState
  *
  * @author Krzysztof Misztal
  */
-class DetailsViewState : ViewState {
-
-    override val errorMessage: Int?
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-}
+data class DetailsViewState(
+        val similarShows: List<TvShow>,
+        val isLoading: Boolean,
+        val didDownloadFailed: Boolean,
+        override val errorMessage: Int? = null
+) : ViewState
