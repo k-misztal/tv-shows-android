@@ -89,8 +89,13 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
         this.ratingBar.rating = show.voteAverage
 
         with(Picasso.with(this)) {
-            load("${MovieApi.imagePath(500)}${show.backdropPath}").into(image)
-            load("${MovieApi.imagePath(200)}${show.posterPath}").into(poster)
+            load("${MovieApi.imagePath(500)}${show.backdropPath}")
+                    .placeholder(R.drawable.ic_poster)
+                    .error(R.drawable.ic_error)
+                    .into(image)
+            load("${MovieApi.imagePath(200)}${show.posterPath}")
+                    .placeholder(R.drawable.ic_poster)
+                    .error(R.drawable.ic_error).into(poster)
         }
 
         retryDownload.setOnClickListener { viewModel.fetchSimilarShows() }

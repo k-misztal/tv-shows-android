@@ -33,6 +33,8 @@ class DetailsRecyclerAdapter : ArrayMvvmRecyclerAdapter<TvShow, DetailsRecyclerA
         if (item.posterPath != null) {
             Picasso.with(holder.itemView.context)
                     .load("${MovieApi.imagePath(200)}${item.backdropPath}")
+                    .placeholder(R.drawable.ic_poster)
+                    .error(R.drawable.ic_error)
                     .into(holder.posterImage)
         }
 
