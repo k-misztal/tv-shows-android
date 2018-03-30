@@ -65,13 +65,13 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
         titleText.text = show.name
         description.text = show.overview
 
-        Picasso.with(this)
-                .load("${MovieApi.imagePath(500)}${show.backdropPath}")
-                .into(image)
+        this.rating.text = getString(R.string.rating, show.voteAverage, show.voteCount)
+        this.ratingBar.rating = show.voteAverage
 
-        Picasso.with(this)
-                .load("${MovieApi.imagePath(200)}${show.posterPath}")
-                .into(poster)
+        with(Picasso.with(this)) {
+            load("${MovieApi.imagePath(500)}${show.backdropPath}").into(image)
+            load("${MovieApi.imagePath(200)}${show.posterPath}").into(poster)
+        }
     }
 
     //==========================================================================

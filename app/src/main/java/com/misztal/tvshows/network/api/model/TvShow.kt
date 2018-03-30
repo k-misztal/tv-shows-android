@@ -13,6 +13,7 @@ data class TvShow(
         val backdropPath: String?,
         val popularity: Float,
         val voteAverage: Float,
+        val voteCount: Int,
         val name: String,
         val originalName: String,
         val overview: String
