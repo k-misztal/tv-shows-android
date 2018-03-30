@@ -10,7 +10,7 @@ Note that release build, signing and proguard rules are not configured.
 
 App uses MVVM architecture using [Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html), specifically `ViewModel` and `LiveData`. Thanks to that ViewModel survives configuration chagnes, like orientation chagne. 
 
-App uses Retrofit and RxJava2 to fetch the data from tmdb api. Afterwards, data is exposed to activity/fragmet using `LiveData`. 
+App uses Retrofit and RxJava2 to fetch the data from tmdb api. When the data is fetched ViewModel exposes new immutable state to the subscribers. 
 
 App uses Dagger2 for dependency injection. I used new injection API introduced in `2.12` version of dagger. Thanks to that activities/fragments are totally not aware of injection process. 
 
