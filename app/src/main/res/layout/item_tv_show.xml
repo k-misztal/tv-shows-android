@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/tv_show_icon_height"
             android:scaleType="centerCrop"
+            android:src="@drawable/ic_poster"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

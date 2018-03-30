@@ -29,6 +29,7 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
+                android:src="@drawable/ic_poster"
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
@@ -59,6 +60,7 @@
                 android:layout_height="@dimen/tv_show_detail_poster_size"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:src="@drawable/ic_poster"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -137,8 +139,8 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/similar_shows_height"
                 android:layout_marginTop="10dp"
+                android:minHeight="@dimen/similar_shows_height"
                 app:layout_constraintTop_toBottomOf="@+id/similarText" />
 
             <ProgressBar
