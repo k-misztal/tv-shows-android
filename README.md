@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/k-misztal/tv-shows-android.svg?branch=master)](https://travis-ci.com/k-misztal/tv-shows-android)
 ## Tv Shows
 
 Tv Shows is simple sample app that fetches most popular tv shows using [TMDB](https://www.themoviedb.org) public API. In the show details there is list of similar shows. 
