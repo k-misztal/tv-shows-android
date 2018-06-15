@@ -7,6 +7,7 @@
     <string name="filter">Filter</string>
     <string name="filter_title">Filter shows</string>
     <string name="filter_message">Choose a year range</string>
+    <string name="clear_filter">Clear filter</string>
 
     <!--Details-->
     <string name="rating">%1$.2f, %2$d voters</string>

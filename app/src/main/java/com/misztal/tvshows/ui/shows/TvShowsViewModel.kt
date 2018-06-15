@@ -26,11 +26,10 @@ class TvShowsViewModel(
     private var isDownloading = false
 
     companion object {
-        const val MIN_YEAR = 1950
+        val DEFAULT_FILTER = YearFilter(1950, Calendar.getInstance().get(Calendar.YEAR))
     }
 
-    val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-    var yearFilter: YearFilter = YearFilter(MIN_YEAR, currentYear)
+    var yearFilter: YearFilter = DEFAULT_FILTER
         set(value) {
             if (field != value && value.isValid()) {
                 field = value

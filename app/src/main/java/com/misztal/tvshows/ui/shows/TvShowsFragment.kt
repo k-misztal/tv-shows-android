@@ -16,7 +16,6 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.dialog_date_filter.view.*
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
 import timber.log.Timber
-import java.util.*
 import javax.inject.Inject
 
 
@@ -143,9 +142,11 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
                 viewModel.yearFilter = YearFilter(from, to)
             }
 
+            val defaultFilter = TvShowsViewModel.DEFAULT_FILTER
+
             view.fromPicker.wrapSelectorWheel = false
-            view.fromPicker.minValue = TvShowsViewModel.MIN_YEAR
-            view.fromPicker.maxValue = viewModel.currentYear
+            view.fromPicker.minValue = defaultFilter.from
+            view.fromPicker.maxValue = defaultFilter.to
             view.fromPicker.value = viewModel.yearFilter.from
             view.fromPicker.setOnValueChangedListener { _, _, newVal ->
                 if (view.toPicker.value < newVal) {
@@ -154,13 +155,19 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
             }
 
             view.toPicker.wrapSelectorWheel = false
-            view.toPicker.minValue = TvShowsViewModel.MIN_YEAR
-            view.toPicker.maxValue = viewModel.currentYear
+            view.toPicker.minValue = defaultFilter.from
+            view.toPicker.maxValue = defaultFilter.to
             view.toPicker.value = viewModel.yearFilter.to
             view.toPicker.setOnValueChangedListener { _, _, newVal ->
                 if (view.fromPicker.value > newVal) {
                     view.fromPicker.value = newVal
                 }
+            }
+
+            view.clearFilterButton.setOnClickListener {
+                view.toPicker.value = defaultFilter.to
+                view.fromPicker.value = defaultFilter.from
+                dialog.dismiss()
             }
         }
     }
