@@ -4,11 +4,23 @@
     <!--TvShow list-->
     <string name="no_shows">Sorry, there are no shows available. Pull down to refresh.</string>
     <string name="loading_more">Fetching more shows</string>
+    <string name="filter">Filter</string>
+    <string name="filter_title">Filter shows</string>
+    <string name="filter_message">Choose a year range</string>
+    <string name="clear_filter">Clear filter</string>
 
     <!--Details-->
     <string name="rating">%1$.2f, %2$d voters</string>
     <string name="similar">Similar shows</string>
     <string name="retry_download_similar">Fetch similar shows</string>
+    <string name="first_air_date">First air date:</string>
 
+    <!--Generic-->
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="char_dash">—</string>
+
+    <!--Error handling-->
     <string name="error_unknown">Something went wrong</string>
+
 </resources>

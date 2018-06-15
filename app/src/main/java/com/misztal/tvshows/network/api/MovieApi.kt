@@ -17,8 +17,14 @@ interface MovieApi {
         fun imagePath(width: Int) = "http://image.tmdb.org/t/p/w$width"
     }
 
-    @GET("tv/popular")
-    fun getPopularTvShows(@Query("page") page: Int): Single<TvShows>
+    /**
+     * @param page page to be fetched.
+     * @param from from date. In a format: yyyy-MM-dd, for instance 2017-08-11
+     * @param to to date.
+     */
+    @GET("discover/tv?sort_by=popularity.desc")
+    fun getPopularTvShows(@Query("page") page: Int, @Query("air_date.gte") from: String,
+                          @Query("air_date.lte") to: String): Single<TvShows>
 
     @GET("tv/{id}/similar")
     fun getSimilarShows(@Path("id") id: Int, @Query("page") page: Int): Single<TvShows>
