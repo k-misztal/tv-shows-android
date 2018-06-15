@@ -1,7 +1,7 @@
 package com.misztal.tvshows.ui.details
 
 import com.misztal.tvshows.ExceptionHandler
-import com.misztal.tvshows.data.DataManager
+import com.misztal.tvshows.data.ShowsRepository
 import com.misztal.tvshows.network.api.model.TvShow
 import com.misztal.tvshows.network.api.model.response.TvShows
 import com.misztal.tvshows.ui.base.BaseViewModel
@@ -16,7 +16,7 @@ import timber.log.Timber
  */
 class DetailsViewModel(
         private val show: TvShow,
-        private val dataManager: DataManager,
+        private val showsRepository: ShowsRepository,
         private val ioScheduler: Scheduler,
         private val exceptionHandler: ExceptionHandler
 ) : BaseViewModel<DetailsViewState>() {
@@ -29,7 +29,7 @@ class DetailsViewModel(
         disposables.clear()
         postState(DetailsViewState(emptyList(), true, false))
 
-        val disposable = dataManager.getSimilarShows(show.id, 1)
+        val disposable = showsRepository.getSimilarShows(show.id, 1)
                 .subscribeOn(ioScheduler)
                 .subscribeBy(
                         onSuccess = this::onShowsFetched,
