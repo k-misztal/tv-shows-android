@@ -14,4 +14,10 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <style name="TextHeader" parent="TextDefault">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
