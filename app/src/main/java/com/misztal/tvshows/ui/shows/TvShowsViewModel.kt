@@ -8,6 +8,7 @@ import com.misztal.tvshows.ui.base.BaseViewModel
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
+import java.util.*
 
 /**
  * Created by kmisztal on 29/03/2018.
@@ -23,6 +24,20 @@ class TvShowsViewModel(
     private var lastFetchedPage = 0
     private var totalPages = Int.MAX_VALUE
     private var isDownloading = false
+
+    companion object {
+        const val MIN_YEAR = 1950
+    }
+
+    val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+    var yearFilter: YearFilter = YearFilter(MIN_YEAR, currentYear)
+        set(value) {
+            if (field != value && value.isValid()) {
+                field = value
+                reset()
+            }
+        }
+
 
     init {
         // fetch first page when vm is created
@@ -50,7 +65,7 @@ class TvShowsViewModel(
         val state = TvShowsState(getShows(), isLoading, isLoadingNextPage)
         postState(state)
 
-        val disposable = dataManager.getPopularTvShows(toFetch)
+        val disposable = dataManager.getPopularTvShows(toFetch, yearFilter.from, yearFilter.to)
                 .subscribeOn(ioScheduler)
                 .subscribeBy(
                         onSuccess = this::onPageFetched,

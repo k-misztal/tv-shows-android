@@ -33,13 +33,7 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
     lateinit var adapter: TvShowsRecyclerAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
 
-    private val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-    private var yearFilter = YearFilter(MIN_YEAR, currentYear)
-
-
     companion object {
-        private const val MIN_YEAR = 1950
-
         fun newInstance(): TvShowsFragment = TvShowsFragment()
     }
 
@@ -146,13 +140,13 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
             dialog.setOnDismissListener {
                 val from = view.fromPicker.value
                 val to = view.toPicker.value
-                yearFilter = YearFilter(from, to)
+                viewModel.yearFilter = YearFilter(from, to)
             }
 
             view.fromPicker.wrapSelectorWheel = false
-            view.fromPicker.minValue = MIN_YEAR
-            view.fromPicker.maxValue = currentYear
-            view.fromPicker.value = yearFilter.from
+            view.fromPicker.minValue = TvShowsViewModel.MIN_YEAR
+            view.fromPicker.maxValue = viewModel.currentYear
+            view.fromPicker.value = viewModel.yearFilter.from
             view.fromPicker.setOnValueChangedListener { _, _, newVal ->
                 if (view.toPicker.value < newVal) {
                     view.toPicker.value = newVal
@@ -160,9 +154,9 @@ class TvShowsFragment : BaseFragment<TvShowsState, TvShowsViewModel>() {
             }
 
             view.toPicker.wrapSelectorWheel = false
-            view.toPicker.minValue = MIN_YEAR
-            view.toPicker.maxValue = currentYear
-            view.toPicker.value = yearFilter.to
+            view.toPicker.minValue = TvShowsViewModel.MIN_YEAR
+            view.toPicker.maxValue = viewModel.currentYear
+            view.toPicker.value = viewModel.yearFilter.to
             view.toPicker.setOnValueChangedListener { _, _, newVal ->
                 if (view.fromPicker.value > newVal) {
                     view.fromPicker.value = newVal
