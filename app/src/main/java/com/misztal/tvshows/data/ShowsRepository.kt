@@ -6,14 +6,11 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 /**
- * Aggregates all data sources. It may seem redundant, because it's very simple app.
- *
- * In more complicated examples this class aggregates all data sources, like data base, api,
- * shared preferences and so on and so forth.
+ * Aggregates all sources to access shows.
  *
  * @author Krzysztof Misztal
  */
-class DataManager @Inject constructor(
+class ShowsRepository @Inject constructor(
         private val movieApi: MovieApi
 ) {
 

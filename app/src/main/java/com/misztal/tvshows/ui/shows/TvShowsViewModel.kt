@@ -1,7 +1,7 @@
 package com.misztal.tvshows.ui.shows
 
 import com.misztal.tvshows.ExceptionHandler
-import com.misztal.tvshows.data.DataManager
+import com.misztal.tvshows.data.ShowsRepository
 import com.misztal.tvshows.network.api.model.TvShow
 import com.misztal.tvshows.network.api.model.response.TvShows
 import com.misztal.tvshows.ui.base.BaseViewModel
@@ -16,7 +16,7 @@ import java.util.*
  * @author Krzysztof Misztal
  */
 class TvShowsViewModel(
-        private val dataManager: DataManager,
+        private val showsRepository: ShowsRepository,
         private val ioScheduler: Scheduler,
         private val exceptionHandler: ExceptionHandler
 ) : BaseViewModel<TvShowsState>() {
@@ -64,7 +64,7 @@ class TvShowsViewModel(
         val state = TvShowsState(getShows(), isLoading, isLoadingNextPage)
         postState(state)
 
-        val disposable = dataManager.getPopularTvShows(toFetch, yearFilter.from, yearFilter.to)
+        val disposable = showsRepository.getPopularTvShows(toFetch, yearFilter.from, yearFilter.to)
                 .subscribeOn(ioScheduler)
                 .subscribeBy(
                         onSuccess = this::onPageFetched,

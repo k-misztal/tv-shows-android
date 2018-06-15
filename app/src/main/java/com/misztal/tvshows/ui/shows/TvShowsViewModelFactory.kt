@@ -3,7 +3,7 @@ package com.misztal.tvshows.ui.shows
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.misztal.tvshows.ExceptionHandler
-import com.misztal.tvshows.data.DataManager
+import com.misztal.tvshows.data.ShowsRepository
 import com.misztal.tvshows.di.qualifier.IOScheduler
 import io.reactivex.Scheduler
 import javax.inject.Inject
@@ -14,7 +14,7 @@ import javax.inject.Inject
  * @author Krzysztof Misztal
  */
 class TvShowsViewModelFactory @Inject constructor(
-        private val dataManager: DataManager,
+        private val showsRepository: ShowsRepository,
         @IOScheduler private val ioScheduler: Scheduler,
         private val exceptionHandler: ExceptionHandler
 ) : ViewModelProvider.Factory {
@@ -22,7 +22,7 @@ class TvShowsViewModelFactory @Inject constructor(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TvShowsViewModel::class.java)) {
-            return TvShowsViewModel(dataManager, ioScheduler, exceptionHandler) as T
+            return TvShowsViewModel(showsRepository, ioScheduler, exceptionHandler) as T
         }
 
         throw IllegalArgumentException()
