@@ -17,7 +17,7 @@ interface MovieApi {
         fun imagePath(width: Int) = "http://image.tmdb.org/t/p/w$width"
     }
 
-    @GET("tv/popular")
+    @GET("discover/tv")
     fun getPopularTvShows(@Query("page") page: Int): Single<TvShows>
 
     @GET("tv/{id}/similar")
