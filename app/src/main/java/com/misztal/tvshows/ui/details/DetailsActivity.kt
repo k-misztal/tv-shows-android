@@ -84,6 +84,7 @@ class DetailsActivity : BaseActivity<DetailsViewState, DetailsViewModel>() {
     private fun loadShowInfo() {
         titleText.text = show.name
         description.text = show.overview
+        firstAirDate.text = show.firstAirDate
 
         this.rating.text = getString(R.string.rating, show.voteAverage, show.voteCount)
         this.ratingBar.rating = show.voteAverage

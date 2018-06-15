@@ -14,6 +14,7 @@ data class TvShow(
         val popularity: Float,
         val voteAverage: Float,
         val voteCount: Int,
+        val firstAirDate: String, //it's well formatted, we don't need date object
         val name: String,
         val originalName: String,
         val overview: String

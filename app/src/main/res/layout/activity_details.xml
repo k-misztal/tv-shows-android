@@ -68,15 +68,14 @@
                 android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/poster"
-                tools:text="Blablabla" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:text="Bla bla bla" />
 
             <TextView
                 android:id="@+id/titleText"
@@ -97,10 +96,9 @@
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:numStars="10"
                 android:stepSize="0.1"
-                app:layout_constraintBottom_toTopOf="@+id/description"
+                app:layout_constraintBottom_toBottomOf="@+id/poster"
                 app:layout_constraintStart_toStartOf="@+id/titleText"
                 app:layout_constraintTop_toBottomOf="@+id/rating" />
 
@@ -108,13 +106,9 @@
                 android:id="@+id/rating"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:fontFamily="sans-serif-light"
-                android:textSize="12sp"
+                android:textAppearance="@style/TextSmall"
                 app:layout_constraintBottom_toTopOf="@+id/ratingBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/poster"
                 app:layout_constraintTop_toBottomOf="@+id/titleText"
                 app:layout_constraintVertical_chainStyle="packed"
@@ -168,6 +162,31 @@
                 app:layout_constraintEnd_toEndOf="@+id/recyclerView"
                 app:layout_constraintStart_toStartOf="@+id/recyclerView"
                 app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/first_air_date"
+                android:textAppearance="@style/TextSmall"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/poster" />
+
+            <TextView
+                android:id="@+id/firstAirDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/TextSmall"
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/textView"
+                tools:text="2012-01-01" />
 
 
         </android.support.constraint.ConstraintLayout>
